@@ -24,6 +24,8 @@ module OpsgenieSdk
 
     attr_accessor :team_id
 
+    attr_accessor :api_key
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -31,7 +33,8 @@ module OpsgenieSdk
         :'name' => :'name',
         :'enabled' => :'enabled',
         :'type' => :'type',
-        :'team_id' => :'teamId'
+        :'team_id' => :'teamId',
+        :'api_key' => :'apiKey'
       }
     end
 
@@ -42,7 +45,8 @@ module OpsgenieSdk
         :'name' => :'String',
         :'enabled' => :'BOOLEAN',
         :'type' => :'String',
-        :'team_id' => :'String'
+        :'team_id' => :'String',
+        :'api_key' => :'String'
       }
     end
 
@@ -73,6 +77,10 @@ module OpsgenieSdk
       if attributes.has_key?(:'teamId')
         self.team_id = attributes[:'teamId']
       end
+
+      if attributes.has_key?(:'apiKey')
+        self.api_key = attributes[:'apiKey']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -97,7 +105,8 @@ module OpsgenieSdk
           name == o.name &&
           enabled == o.enabled &&
           type == o.type &&
-          team_id == o.team_id
+          team_id == o.team_id &&
+          api_key == o.api_key
     end
 
     # @see the `==` method
@@ -109,7 +118,7 @@ module OpsgenieSdk
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id, name, enabled, type, team_id].hash
+      [id, name, enabled, type, team_id, api_key].hash
     end
 
     # Builds the object from hash
