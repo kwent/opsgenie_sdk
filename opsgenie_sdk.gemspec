@@ -21,7 +21,7 @@ Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Quentin Rousseau"]
   s.email       = ["contact@quent.in"]
-  s.homepage    = "https://github.com/swagger-api/swagger-codegen"
+  s.homepage    = "https://github.com/kwent/opsgenie_sdk"
   s.summary     = "Opsgenie REST API Ruby Gem"
   s.description = "Opsgenie REST API Ruby Gem"
   s.license     = "MIT"
