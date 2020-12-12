@@ -23,6 +23,13 @@ module OpsgenieSdk
       if arg.is_a? Hash
         if arg.key?(:message) || arg.key?('message')
           super(arg[:message] || arg['message'])
+        elsif arg.key?(:response_body) || arg.key?('response_body')
+          response_body = arg[:response_body] ||  arg['response_body']
+          if response_body
+            parsed = JSON.parse(response_body)
+            message = parsed[:message] || parsed['message']
+            message ? super(message) : super(response_body)
+          end
         else
           super arg
         end
