@@ -20,6 +20,67 @@ module OpsgenieSdk
       @api_client = api_client
     end
 
+    # Add Responders Incident
+    # Add Responderss incident with given identifier
+    # @param identifier Identifier of incident which could be incident id or tiny id
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :identifier_type Type of the identifier that is provided as an in-line parameter. Possible values are &#39;id&#39; or &#39;tiny. Default is id&#39; (default to id)
+    # @option opts [Add RespondersIncidentPayload] :body Request payload of closing incident action
+    # @return [SuccessResponse]
+    def add_responders_incident(identifier, opts = {})
+      data, _status_code, _headers = add_responders_incident_with_http_info(identifier, opts)
+      data
+    end
+
+    # Add Responders Incident
+    # Add Responderss incident with given identifier
+    # @param identifier Identifier of incident which could be incident id or tiny id
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :identifier_type Type of the identifier that is provided as an in-line parameter. Possible values are &#39;id&#39; or &#39;tiny. Default is id&#39;
+    # @option opts [AddRespondersIncidentPayload] :body Request payload of closing incident action
+    # @return [Array<(SuccessResponse, Fixnum, Hash)>] SuccessResponse data, response status code and response headers
+    def add_responders_incident_with_http_info(identifier, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: IncidentApi.add_responders_incident ...'
+      end
+      # verify the required parameter 'identifier' is set
+      if @api_client.config.client_side_validation && identifier.nil?
+        fail ArgumentError, "Missing the required parameter 'identifier' when calling IncidentApi.add_responders_incident"
+      end
+      if @api_client.config.client_side_validation && opts[:'identifier_type'] && !['id', 'tiny'].include?(opts[:'identifier_type'])
+        fail ArgumentError, 'invalid value for "identifier_type", must be one of id, tiny'
+      end
+      # resource path
+      local_var_path = '/v1/incidents/{identifier}/responders'.sub('{' + 'identifier' + '}', identifier.to_s)
+
+      # query parameters
+      query_params = {}
+      query_params[:'identifierType'] = opts[:'identifier_type'] if !opts[:'identifier_type'].nil?
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+
+      # form parameters
+      form_params = {}
+
+      # http body (model)
+      post_body = @api_client.object_to_http_body(opts[:'body'])
+      auth_names = ['GenieKey']
+      data, status_code, headers = @api_client.call_api(:POST, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => 'SuccessResponse')
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: IncidentApi#add_responders_incident\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
     # Resolve Incident
     # Resolves incident with given identifier
     # @param identifier Identifier of incident which could be incident id or tiny id
